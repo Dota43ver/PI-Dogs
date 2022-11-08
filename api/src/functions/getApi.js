@@ -5,13 +5,18 @@ const { Dog, Temperament } = require('../db');
 const getApiInfo = async () =>{
     const apiUrl = await axios.get(`https://api.thedogapi.com/v1/breeds`)
     const apiInfo = await apiUrl.data.map(e => {
+        let temperaments = []
+        if(e.temperament){
+            temperaments=e.temperament.split(", "); 
+        }
         return {
             id:e.id,
             name: e.name,
             height: e.height.metric,
             weight: e.weight.metric,
             life_span: e.life_span,
-            temperament: e.temperament
+            temperament: temperaments,
+            image: e.image.url
         }
     })
     return apiInfo;
