@@ -20,14 +20,14 @@ router.get('/', async (req,res) => {
 
 
 router.post('/', async (req, res) => {
-    let {name , height , weight, life_span, temperament} = req.body
+    let {name , height , weight, life_span, temperaments, createdInDb} = req.body
 
     let dogCreated = await Dog.create({
         name , height , weight, life_span
     })
 
     let temperamentDb = await Temperament.findAll({
-        where: {name : temperament}
+        where: {name : temperaments}
     })
     dogCreated.addTemperament(temperamentDb)
     res.send('successfully created dog!')

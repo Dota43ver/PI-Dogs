@@ -1,7 +1,7 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { getDogs,filterDogsByTemperament } from '../actions';
+import { getDogs,filterDogsByTemperament, filterCreated, orderByName } from '../actions';
 import {Link} from 'react-router-dom';
 import Card from './Card';
 import Pagination from './Pagination';
@@ -10,6 +10,7 @@ export default function Home(){
 
 const dispatch = useDispatch()
 const allDogs = useSelector((state) => state.dogs)
+const [orden, setOrden] = useState('')
 const [currentPage,setCurrentPage] = useState(1)
 const [dogsPerPage, setDogsPerPage] = useState(8)
 const indexOfLastDog = currentPage * dogsPerPage
@@ -33,6 +34,15 @@ function handleFilterTemperament(e){
 dispatch(filterDogsByTemperament(e.target.value))
 }
 
+function handleFilterCreated(e){
+    dispatch(filterCreated(e.target.value))
+}
+const handleOrderByName = (e) => {
+    e.preventDefault();
+    dispatch(orderByName(e.target.value));
+    setOrden(`Ordenado ${e.target.value}`);
+  };
+
 return(
     <div>
         <Link to='/dog'>Crear dog</Link>
@@ -41,10 +51,13 @@ return(
             volver a cargar dogs
         </button>
         <div>
-            <select>
-                <option value='asc'>Ascendente</option>
-                <option value='desc'>Descendente</option>
-            </select>
+        <select onChange={handleOrderByName}>
+                <option disabled selected defaultValue>
+                  Alphabetical order
+                </option>
+                <option value="asc">asc</option>
+                <option value="desc">desc</option>
+              </select>
             <select onChange={e => handleFilterTemperament(e)}>
                 <option value="All">All</option>
                 <option value="Confident">Confident</option>
@@ -173,6 +186,11 @@ return(
                 <option value="Boisterous">Boisterous</option>
                 <option value="Eager">Eager</option>
             </select>
+            <select onChange={e => handleFilterCreated(e)}>
+                <option value="All">All</option>
+                <option value="created">created dogs</option>
+                <option value="api">api Dogs</option>
+            </select>
             <Pagination
             dogsPerPage={dogsPerPage}
             allDogs={allDogs.length}
@@ -180,7 +198,7 @@ return(
             {
                 currentDogs?.map((e)=> {
                     return(
-                          <Card name={e.name} temperament={e.temperament} image={e.image}/>                         
+                          <Card name={e.name} temperament={e.temperaments} image={e.image}/>                         
                     )
                 })
             }

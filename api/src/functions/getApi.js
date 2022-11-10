@@ -5,9 +5,9 @@ const { Dog, Temperament } = require('../db');
 const getApiInfo = async () =>{
     const apiUrl = await axios.get(`https://api.thedogapi.com/v1/breeds`)
     const apiInfo = await apiUrl.data.map(e => {
-        let temperaments = []
+        let temperament = []
         if(e.temperament){
-            temperaments=e.temperament.split(", "); 
+            temperament=e.temperament.split(", "); 
         }
         return {
             id:e.id,
@@ -15,15 +15,16 @@ const getApiInfo = async () =>{
             height: e.height.metric,
             weight: e.weight.metric,
             life_span: e.life_span,
-            temperament: temperaments,
-            image: e.image.url
+            temperaments: temperament,
+            image: e.image.url,
+            createdInDb: e.createdInDb
         }
     })
     return apiInfo;
 }
 
 const getDbInfo = async () => {
-    return await Dog.findAll({
+    let datachota = await Dog.findAll({
         include: {
             model: Temperament,
             attributes: ['name'],
@@ -32,6 +33,20 @@ const getDbInfo = async () => {
             }
         }
     });
+const dataFilter = datachota.map((e) =>{
+    return {
+        id : e.id,
+        name : e.name,
+        height: e.height,
+        weight: e.weight,
+        image: e.image,
+        life_span : e.life_span,
+        createdInDb: e.createdInDb,
+        temperaments: e.temperaments.map((e)=> e.name)
+
+    }
+})
+return dataFilter
 }
 
 const getAllDogs = async () => {
