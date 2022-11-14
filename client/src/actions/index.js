@@ -33,3 +33,17 @@ export function orderByName(payload){
         payload
     }
 }
+
+export function getNameDogs(name){
+    return async function(dispatch){
+        try{
+        var json = await axios.get("http://localhost:3001/dogs?name="+ name);
+        return dispatch({
+            type: "GET_NAME_DOGS",
+            payload: json.data
+        })
+    } catch(error){
+        console.log(error)
+    }
+    }
+}

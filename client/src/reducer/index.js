@@ -50,6 +50,11 @@ function rootReducer(state= initialState, action){
         ...state,
         dogs: sortedName,
       };
+            case 'GET_NAME_DOGS':
+            return{
+              ...state,
+              dogs: action.payload
+            }
         default:
             return state;
     }

@@ -5,6 +5,7 @@ import { getDogs,filterDogsByTemperament, filterCreated, orderByName } from '../
 import {Link} from 'react-router-dom';
 import Card from './Card';
 import Pagination from './Pagination';
+import SearchBar from './SearchBar';
 
 export default function Home(){
 
@@ -195,6 +196,7 @@ return(
             dogsPerPage={dogsPerPage}
             allDogs={allDogs.length}
             pagination= {pagination}/>
+            <SearchBar/>
             {
                 currentDogs?.map((e)=> {
                     return(
