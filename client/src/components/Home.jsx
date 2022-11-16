@@ -200,7 +200,7 @@ return(
             {
                 currentDogs?.map((e)=> {
                     return(
-                          <Card name={e.name} temperament={e.temperaments} image={e.image}/>                         
+                          <Card name={e.name} temperament={e.temperaments} image={e.image} weight ={e.weight}/>                         
                     )
                 })
             }

@@ -20,10 +20,10 @@ router.get('/', async (req,res) => {
 
 
 router.post('/', async (req, res) => {
-    let {name , height , weight, life_span, temperaments, createdInDb} = req.body
+    let {name , height , weight, life_span, temperaments, createdInDb,image} = req.body
 
     let dogCreated = await Dog.create({
-        name , height , weight, life_span
+        name , height , weight, life_span , image
     })
 
     let temperamentDb = await Temperament.findAll({

@@ -13,7 +13,7 @@ export default function Card({ name, image, temperament, weight}){
                     )
                 })}
             </div>
-            <h5>{weight}</h5>
+            <h5>{weight + " kg"}</h5>
             <img src={image} alt="img not found" width="200px" height="250px" />
         </div>
     )
