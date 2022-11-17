@@ -33,11 +33,11 @@ router.post('/', async (req, res) => {
     res.send('successfully created dog!')
 })
 
-router.get('/:id', async (req, res) => {
-    const name = req.params.id;
+router.get('/:id/', async (req, res) => {
+    const id = req.params.id;
     const dogTotal = await getAllDogs()
-    if (name){
-        let dogId = await dogTotal.filter(el => el.name == name)
+    if (id){
+        let dogId = await dogTotal.filter(el => el.id == id)
         dogId.length?
         res.status(200).json(dogId):
         res.status(404).send('I didnt find that dog')

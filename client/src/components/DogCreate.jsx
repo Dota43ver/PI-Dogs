@@ -142,7 +142,7 @@ return(
             </div>
             <select onChange={(e)=> handleSelect(e)}>
                 {temperaments.map((e)=>(
-                    <option value={e.name}>{e.name}</option>
+                    <option value={e.name} key={e.id}>{e.name}</option>
                 ))}
             </select>
             {/* <ul><li>{input.temperaments.map(el => el + " ,")}</li></ul> */}

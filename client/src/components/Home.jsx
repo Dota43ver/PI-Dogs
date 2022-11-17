@@ -200,7 +200,9 @@ return(
             {
                 currentDogs?.map((e)=> {
                     return(
+                        <Link to={"/home/" + e.id}>
                           <Card name={e.name} temperament={e.temperaments} image={e.image} weight ={e.weight}/>                         
+                        </Link>
                     )
                 })
             }
