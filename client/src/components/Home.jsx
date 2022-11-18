@@ -1,7 +1,7 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { getDogs,filterDogsByTemperament, filterCreated, orderByName } from '../actions';
+import { getDogs,filterDogsByTemperament, filterCreated, orderByName, orderByWeight } from '../actions';
 import {Link} from 'react-router-dom';
 import Card from './Card';
 import Pagination from './Pagination';
@@ -43,6 +43,11 @@ const handleOrderByName = (e) => {
     dispatch(orderByName(e.target.value));
     setOrden(`Ordenado ${e.target.value}`);
   };
+  const handleOrderByWeight = (e) => {
+    e.preventDefault();
+    dispatch(orderByWeight(e.target.value));
+    setOrden(`Ordenado ${e.target.value}`);
+  };
 
 return(
     <div>
@@ -59,6 +64,13 @@ return(
                 <option value="asc">asc</option>
                 <option value="desc">desc</option>
               </select>
+        <select onChange={handleOrderByWeight}>
+            <option disabled selected defaultValue>
+                less weight order
+            </option>
+            <option value="asc">asc</option>
+            <option value="desc">desc</option>
+        </select>
             <select onChange={e => handleFilterTemperament(e)}>
                 <option value="All">All</option>
                 <option value="Confident">Confident</option>

@@ -33,7 +33,7 @@ router.post('/', async (req, res) => {
     res.send('successfully created dog!')
 })
 
-router.get('/:id/', async (req, res) => {
+router.get('/:id', async (req, res) => {
     const id = req.params.id;
     const dogTotal = await getAllDogs()
     if (id){

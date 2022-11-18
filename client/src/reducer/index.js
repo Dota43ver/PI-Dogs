@@ -52,6 +52,31 @@ function rootReducer(state= initialState, action){
         ...state,
         dogs: sortedName,
       };
+      case 'ORDER_BY_WEIGHT':
+        const sortedWeight =
+action.payload === "asc"
+  ? state.allDogs.sort((a, b) => {
+      if (parseInt(a.weight.substr(0,2)) > parseInt(b.weight.substr(0,2))) {
+        return 1;
+      }
+      if (parseInt(b.weight.substr(0,2)) > parseInt(a.weight.substr(0,2))) {
+        return -1;
+      }
+      return 0;
+    })
+  : state.allDogs.sort((a, b) => {
+      if (parseInt(a.weight.substr(0,2)) > parseInt(b.weight.substr(0,2))) {
+        return -1;
+      }
+      if (parseInt(b.weight.substr(0,2)) > parseInt(a.weight.substr(0,2))) {
+        return 1;
+      }
+      return 0;
+    });
+return {
+...state,
+dogs: sortedWeight,
+};
             case 'GET_NAME_DOGS':
             return{
               ...state,

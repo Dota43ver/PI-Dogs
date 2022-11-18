@@ -79,3 +79,10 @@ export function getDetail(id){
         }
     }
 }
+
+export function orderByWeight(payload){
+    return{
+        type: 'ORDER_BY_WEIGHT',
+        payload
+    }
+}
