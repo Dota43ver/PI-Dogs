@@ -8,11 +8,15 @@ function validate(input){
     let errors = {}
     if(!input.name){
         errors.name = 'Se requiere nombre'
-    } else if(!input.height){
-        errors.height = 'Se requiere altura'
-    } else if(!input.weight){
-        errors.weight = 'se requiere peso'
-    } else if (input.name && input.height && input.weight){
+    } else if(!input.height_min){
+        errors.height_min = 'Se requiere altura minima'
+    } else if(!input.height_max){
+        errors.height_max = 'Se requiere altura maxima'
+    } else if(!input.weight_min){
+        errors.weight_min = 'Se requiere peso minimo'
+    } else if(!input.weight_max){
+        errors.weight_max = 'Se requiere peso maximo'
+    } else if (input.name && input.height_min && input.height_max && input.weight_min && input.weight_max){
         errors = false
     }
 
@@ -28,8 +32,10 @@ export default function DogCreate(){
 
     const [input,setInput] = useState({
         name: "",
-        height:"",
-        weight:"",
+        height_min:"",
+        height_max:"",
+        weight_min:"",
+        weight_max:"",
         life_span:"",
         temperaments:[]
 
@@ -99,27 +105,51 @@ return(
                 )}
             </div>
             <div>
-                <label>height</label>
+                <label>height_min</label>
                 <input
                 type = "text"
-                value={input.height}
-                name="height"
+                value={input.height_min}
+                name="height_min"
                 onChange={(e)=>handleChange(e)}
                 />
-                {errors.height && (
-                    <p className='error'>{errors.height}</p>
+                {errors.height_min && (
+                    <p className='error'>{errors.height_min}</p>
                 )}
             </div>
             <div>
-                <label>weight</label>
+                <label>height_max</label>
                 <input
-                type="text"
-                value={input.weight}
-                name="weight"
+                type = "text"
+                value={input.height_max}
+                name="height_max"
                 onChange={(e)=>handleChange(e)}
                 />
-                {errors.weight && (
-                    <p className='error'>{errors.weight}</p>
+                {errors.height_max && (
+                    <p className='error'>{errors.height_max}</p>
+                )}
+            </div>
+            <div>
+                <label>weight_min</label>
+                <input
+                type="text"
+                value={input.weight_min}
+                name="weight_min"
+                onChange={(e)=>handleChange(e)}
+                />
+                {errors.weight_min && (
+                    <p className='error'>{errors.weight_min}</p>
+                )}
+            </div>
+            <div>
+                <label>weight_max</label>
+                <input
+                type="text"
+                value={input.weight_max}
+                name="weight_max"
+                onChange={(e)=>handleChange(e)}
+                />
+                {errors.weight_max && (
+                    <p className='error'>{errors.weight_max}</p>
                 )}
             </div>
             <div>
