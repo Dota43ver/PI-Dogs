@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Link , useHistory} from 'react-router-dom';
 import {postDog, getTemperaments} from '../actions/index'
 import {useDispatch, useSelector} from 'react-redux'
+import style from "./DogCreate.module.css"
 
 
 function validate(input){
@@ -89,11 +90,11 @@ dispatch(getTemperaments());
 
 return(
     <div>
-        <Link to= '/home'><button>Volver</button></Link>
+        <Link to= '/home'><button className={`${style.landingPage}`}>Volver</button></Link>
         <h1>Crea tu Dog!</h1>
-        <form onSubmit={(e)=>handleSubmit(e)}>
+        <form onSubmit={(e)=>handleSubmit(e)} className={`${style.form}`}>
             <div>
-                <label>Name:</label>
+                <label className={`${style.landingPage2}`}>Name:</label>
                 <input
                 type= "text"
                 value={input.name}
@@ -105,7 +106,7 @@ return(
                 )}
             </div>
             <div>
-                <label>height_min</label>
+                <label className={`${style.landingPage2}`}>height_min</label>
                 <input
                 type = "text"
                 value={input.height_min}
@@ -117,7 +118,7 @@ return(
                 )}
             </div>
             <div>
-                <label>height_max</label>
+                <label className={`${style.landingPage2}`}>height_max</label>
                 <input
                 type = "text"
                 value={input.height_max}
@@ -129,7 +130,7 @@ return(
                 )}
             </div>
             <div>
-                <label>weight_min</label>
+                <label className={`${style.landingPage2}`}>weight_min</label>
                 <input
                 type="text"
                 value={input.weight_min}
@@ -141,7 +142,7 @@ return(
                 )}
             </div>
             <div>
-                <label>weight_max</label>
+                <label className={`${style.landingPage2}`}>weight_max</label>
                 <input
                 type="text"
                 value={input.weight_max}
@@ -153,7 +154,7 @@ return(
                 )}
             </div>
             <div>
-                <label>image</label>
+                <label className={`${style.landingPage2}`}>image</label>
                 <input
                 type="text"
                 value={input.image}
@@ -162,7 +163,7 @@ return(
                 />
             </div>
             <div>
-                <label>life_span</label>
+                <label className={`${style.landingPage2}`}>life_span</label>
                 <input
                 type="text"
                 value={input.life_span}
@@ -170,20 +171,24 @@ return(
                 onChange={(e)=>handleChange(e)}
                 />
             </div>
-            <select onChange={(e)=> handleSelect(e)}>
+            <select onChange={(e)=> handleSelect(e)} className={style.select_temperaments}>
                 {temperaments.map((e)=>(
-                    <option value={e.name} key={e.id}>{e.name}</option>
+                    <option value={e.name} key={e.id} className={style.option_temperaments}>{e.name}</option>
                 ))}
             </select>
             {/* <ul><li>{input.temperaments.map(el => el + " ,")}</li></ul> */}
-            <button type='submit' disabled={!!errors}>Crear dog</button>
+            <button type='submit' disabled={!!errors} className={`${style.landingPage}`}>Crear dog</button>
         </form>
+        <div className={`${style.pee}`}>
         {input.temperaments.map(el=>
-            <div className='divTemp'>
-                <p>{el}</p>
-                <button className='buttonX' onClick={()=> handleDelete(el)}>x</button>
+            <div >
+                <ul>
+                <li className={`${style.pee2}`}>{el}</li>
+                </ul>
+                <button className={`${style.landingPage}`} onClick={()=> handleDelete(el)}>x</button>
             </div>
             )}
+            </div>
 
     </div>
 )

@@ -1,4 +1,5 @@
 import React from 'react';
+import style from "./Pagination.module.css"
 
 export default function Pagination({dogsPerPage, allDogs, pagination}){
     const pageNumbers = []
@@ -7,12 +8,14 @@ export default function Pagination({dogsPerPage, allDogs, pagination}){
         pageNumbers.push(i)
     }
     return(
-        <nav>
-            <ul className='pagination'>
+        <nav className={`${style.nav_container}`}>
+            <ul className={`${style.ul_container}`}>
                 {pageNumbers?.map(number=>(
-                    <li className='number' key={number}>
-                    <a onClick={()=> pagination(number)}>{number}</a>
+                    <div className={`${style.ul_container2}`}>
+                    <li className={`${style.li_container2}`} key={number}>
+                    <button className={`${style.li_container}`} onClick={()=> pagination(number)}>{number}</button>
                     </li>
+                    </div>
                 ))}
             </ul>
         </nav>

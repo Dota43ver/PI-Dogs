@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
     
 
     let dogCreated = await Dog.create({
-        name , height: totalHeight , weight: totalWeight, life_span , image: image ? image : "https://scontent.faep9-1.fna.fbcdn.net/v/t39.30808-6/309862038_417066470598143_3937150299742614375_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=jkH0AbCo2doAX_9k47C&tn=REfwHSxg2EW0LsAs&_nc_ht=scontent.faep9-1.fna&oh=00_AfDY9sf5WyRx1_B_n4KWvcm93sGrEuKkXF_-9HyXLQeGnw&oe=637D4A42"
+        name , height: totalHeight , weight: totalWeight, life_span , image
     })
 
     let temperamentDb = await Temperament.findAll({

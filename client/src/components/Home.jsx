@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 import Card from './Card';
 import Pagination from './Pagination';
 import SearchBar from './SearchBar';
+import style from "./Home.module.css"
 
 export default function Home(){
 
@@ -51,27 +52,27 @@ const handleOrderByName = (e) => {
 
 return(
     <div>
-        <Link to='/dog'>Crear dog</Link>
+        <Link to='/dog'><button className={`${style.landingPage}`}>Crear dog</button></Link>
         <h1>DOGS</h1>
-        <button onClick={e=> {handleClick(e)}}>
+        <button onClick={e=> {handleClick(e)}} className={`${style.landingPage}`}>
             volver a cargar dogs
         </button>
         <div>
-        <select onChange={handleOrderByName}>
+        <select onChange={handleOrderByName} className={style.select_temperaments}>
                 <option disabled selected defaultValue>
                   Alphabetical order
                 </option>
                 <option value="asc">asc</option>
                 <option value="desc">desc</option>
               </select>
-        <select onChange={handleOrderByWeight}>
+        <select onChange={handleOrderByWeight} className={style.select_temperaments}>
             <option disabled selected defaultValue>
                 less weight order
             </option>
             <option value="asc">asc</option>
             <option value="desc">desc</option>
         </select>
-            <select onChange={e => handleFilterTemperament(e)}>
+            <select onChange={e => handleFilterTemperament(e)} className={style.select_temperaments}>
                 <option value="All">All</option>
                 <option value="Confident">Confident</option>
                 <option value="Trainable">Trainable</option>
@@ -199,25 +200,33 @@ return(
                 <option value="Boisterous">Boisterous</option>
                 <option value="Eager">Eager</option>
             </select>
-            <select onChange={e => handleFilterCreated(e)}>
+            <select onChange={e => handleFilterCreated(e)} className={style.select_temperaments}>
                 <option value="All">All</option>
                 <option value="created">created dogs</option>
                 <option value="api">api Dogs</option>
             </select>
+            <div className={`${style.pagination}`}>
             <Pagination
             dogsPerPage={dogsPerPage}
             allDogs={allDogs.length}
             pagination= {pagination}/>
+            </div>
             <SearchBar/>
+            <div className={style.main_container}>
+                <div className={style.container_cards}>
             {
                 currentDogs?.map((e)=> {
                     return(
+                        <div className={`${style.container_card}`} key={e.id}>
                         <Link to={"/home/" + e.id}>
                           <Card name={e.name} temperament={e.temperaments} image={e.image} weight ={e.weight}/>                         
                         </Link>
+                        </div>
                     )
                 })
             }
+                </div>
+            </div>
         </div>
     </div>
 )
