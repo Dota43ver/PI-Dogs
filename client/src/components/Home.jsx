@@ -219,7 +219,7 @@ return(
                     return(
                         <div className={`${style.container_card}`} key={e.id}>
                         <Link to={"/home/" + e.id}>
-                          <Card name={e.name} temperament={e.temperaments} image={e.image} weight ={e.weight}/>                         
+                          <Card name={e.name} temperament={e.temperaments} image={e.image} weight ={e.weight} key={e.id}/>                         
                         </Link>
                         </div>
                     )

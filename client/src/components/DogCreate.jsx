@@ -8,20 +8,89 @@ import style from "./DogCreate.module.css"
 function validate(input){
     let errors = {}
     if(!input.name){
-        errors.name = 'Se requiere nombre'
-    } else if(!input.height_min){
-        errors.height_min = 'Se requiere altura minima'
-    } else if(!input.height_max){
-        errors.height_max = 'Se requiere altura maxima'
-    } else if(!input.weight_min){
-        errors.weight_min = 'Se requiere peso minimo'
-    } else if(!input.weight_max){
-        errors.weight_max = 'Se requiere peso maximo'
-    } else if (input.name && input.height_min && input.height_max && input.weight_min && input.weight_max){
+        errors.name = 'se requiere nombre'
+    } else {
+        errors.name = false
+    }
+    if(!/^[a-zA-Z]+$/.test(input.name)){
+             errors.name = 'solo letras'
+    }else{
+            errors.name = false
+    }
+    if(!input.height_min){
+           errors.height_min = 'Se requiere altura minima'
+    } else{
+        errors.height_min = false
+    }
+    if(!/^[0-9]+$/.test(input.height_min)){
+        errors.height_min = 'solo numeros'
+    }else{
+    errors.height_min = false
+    }
+    if(!input.height_max){
+            errors.height_max = 'Se requiere altura maxima'
+    }else {
+        errors.height_max = false
+    }
+    if(!/^[0-9]+$/.test(input.height_max)){
+        errors.height_max = 'solo numeros'
+    }else{
+    errors.height_max = false
+    }
+    if(input.height_min > input.height_max){
+        errors.height_max = 'el valor minimo es mayor al valor maximo'
+        errors.height_min = 'el valor minimo es mayor al valor maximo'
+    }
+    
+    if(!input.weight_min){
+             errors.weight_min = 'Se requiere peso minimo'
+    }else {
+        errors.weight_min = false
+    }
+    
+    if(!/^[0-9]+$/.test(input.weight_min)){
+        errors.weight_min = 'solo numeros'
+    }else{
+    errors.weight_min = false
+    }
+    if(!input.weight_max){
+             errors.weight_max = 'Se requiere peso maximo'
+    }else {
+        errors.weight_max = false
+    }
+    if(!/^[0-9]+$/.test(input.weight_max)){
+        errors.weight_max = 'solo numeros'
+    }else{
+    errors.weight_max = false
+    }
+    if(input.weight_min > input.weight_max){
+        errors.weight_max = 'el valor minimo es mayor al valor maximo'
+        errors.weight_min = 'el valor minimo es mayor al valor maximo'
+    }
+    if((errors.name === false) && (errors.height_min === false) && (errors.height_max === false) && (errors.weight_min === false) && (errors.weight_max === false) ){
         errors = false
     }
+    // if (input.name && input.height_min && input.height_max && input.weight_min && input.weight_max){
+    //          errors = false
+    // }
+    // let errors = {}
+    // if(!input.name){
+    //     errors.name = 'Se requiere nombre'
+    // } else if(!/^[a-zA-Z]+$/.test(input.name)){
+    //     errors.name = 'solo letras'
+    // } else if(!input.height_min){
+    //     errors.height_min = 'Se requiere altura minima'
+    // } else if(!input.height_max){
+    //     errors.height_max = 'Se requiere altura maxima'
+    // } else if(!input.weight_min){
+    //     errors.weight_min = 'Se requiere peso minimo'
+    // } else if(!input.weight_max){
+    //     errors.weight_max = 'Se requiere peso maximo'
+    // } else if (input.name && input.height_min && input.height_max && input.weight_min && input.weight_max){
+    //     errors = false
+    // }
 
-    return errors
+     return errors
 }
 
 
