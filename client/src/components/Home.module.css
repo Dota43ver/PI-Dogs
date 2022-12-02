@@ -4,10 +4,23 @@
 
 .container_cards{
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 5% 0.9%;
+    grid-template-columns: repeat(auto-fill, 300px);
+    gap: 40px;
     justify-items: center;
-    padding: 2rem 0 2rem 0;
+    padding: 40px;
+}
+
+@media (max-width: 560px){
+    .container_cards {
+        grid-template-columns: 100%;
+    }
+}
+
+@media (max-width: 560px){
+    .img_cards {
+       width: 90%;
+       height: auto;
+    }
 }
 
 .container_card{ /* estilos de carta individual */
